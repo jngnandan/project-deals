@@ -2,7 +2,7 @@
   "name": "project-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server/scrape/api2.tsx",
+  "main": "server/app.js",
   "scripts": {
     "start": "node server/scrape/api2.tsx",
     "test": "echo \"Error: no test specified\" && exit 1"
