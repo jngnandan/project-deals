@@ -7,13 +7,13 @@ const cors = require("cors");
 const cloudinary = require("cloudinary").v2;
 const gsmarena = require('gsmarena-api')
 
-const apple = require('./localData/apple.json');
-const samsung = require('./localData/samsung.json');
-const xiomi = require('./localData/xiomi.json')
-const oneplus = require('./localData/oneplus.json')
-const google = require('./localData/google.json')
-const motorola = require('./localData/motorola.json')
-const phonespecData = require('./localData/phonespec.json')
+const apple = require('../localData/apple.json');
+const samsung = require('../localData/samsung.json');
+const xiomi = require('../localData/xiomi.json')
+const oneplus = require('../localData/oneplus.json')
+const google = require('../localData/google.json')
+const motorola = require('../localData/motorola.json')
+const phonespecData = require('../localData/phonespec.json')
 
 
 const { Database } = require("sqlite3").verbose();
@@ -64,23 +64,19 @@ const initializeDBAndServer = async () => {
     // createTableAndAddDataForPhonespec(phonespecJson)
 const PORT = process.env.PORT || 3002;
 
-app.use(cors());
-
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, '/public')));
-
 app.listen(PORT, () => {
   console.log(`Server Running at http://localhost:${PORT}/`);
 });
 
-// Remaining code...
-} catch (e) {
-console.log(`DB Error: ${e.message}`);
-process.exit(1);
-}
+  } catch (e) {
+    console.log(`DB Error: ${e.message}`);
+    process.exit(1);
+  }
 };
 
 initializeDBAndServer();
+
+app.use(cors());
 
 
 // ... Previous code ...
