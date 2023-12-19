@@ -405,16 +405,16 @@ app.get("/motorola", async (req, res) => {
 // });
 
 
-app.get("/products", async (req, res) => {
-  try {
-    // Fetch deals from GSM Arena
-    const deals = await gsmarena.deals.getDeals();
-    res.json(deals);
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
+// app.get("/products", async (req, res) => {
+//   try {
+//     // Fetch deals from GSM Arena
+//     const deals = await gsmarena.deals.getDeals();
+//     res.json(deals);
+//   } catch (error) {
+//     console.error('Error:', error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
 
 // app.get("/mobiles", async (req, res) => {
 //   try {
@@ -427,16 +427,16 @@ app.get("/products", async (req, res) => {
 //   }
 // });
 
-app.get("/brands", async (req, res) => {
-  try {
-    // Fetch deals from GSM Arena
-    const one = await gsmarena.catalog.getBrands();
-    res.json(one);
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
+// app.get("/brands", async (req, res) => {
+//   try {
+//     // Fetch deals from GSM Arena
+//     const one = await gsmarena.catalog.getBrands();
+//     res.json(one);
+//   } catch (error) {
+//     console.error('Error:', error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
 
 
 // app.get("/products/:productId", async (req, res) => {
@@ -453,47 +453,45 @@ app.get("/brands", async (req, res) => {
 // });
 
 
-const cachedData = {};
+// const cachedData = {};
 
-app.get("/products/:productId", async (req, res) => {
-  try {
-    const { productId } = req.params;
-    console.log(productId);
+// app.get("/products/:productId", async (req, res) => {
+//   try {
+//     const { productId } = req.params;
+//     console.log(productId);
 
-    if (cachedData[productId]) {
-      // If the data for this productId is already in the cache, return it
-      console.log("Data found in cache.");
-      return res.json(cachedData[productId]);
-    }
+//     if (cachedData[productId]) {
+//       // If the data for this productId is already in the cache, return it
+//       console.log("Data found in cache.");
+//       return res.json(cachedData[productId]);
+//     }
 
-    const device = await gsmarena.catalog.getDevice(productId);
-    console.log(device);
+//     const device = await gsmarena.catalog.getDevice(productId);
+//     console.log(device);
 
-    // Call initializePhonespecTable to create or update the table
-    await initializePhonespecTable(device);
+//     // Call initializePhonespecTable to create or update the table
+//     await initializePhonespecTable(device);
 
-    // Cache the data for future use
-    cachedData[productId] = device;
+//     // Cache the data for future use
+//     cachedData[productId] = device;
 
-    res.json(device);
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
+//     res.json(device);
+//   } catch (error) {
+//     console.error('Error:', error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
 
-async function initializePhonespecTable(device) {
-  try {
-    // You can call this function when you want to create or update the table
-    await 
-    createTableAndAddDataForPhonespec([device]); // Wrap the 'device' in an array for consistency with your existing code
-    console.log("Table created and data inserted into the database for phonespec.");
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
-
-
+// async function initializePhonespecTable(device) {
+//   try {
+//     // You can call this function when you want to create or update the table
+//     await 
+//     createTableAndAddDataForPhonespec([device]); // Wrap the 'device' in an array for consistency with your existing code
+//     console.log("Table created and data inserted into the database for phonespec.");
+//   } catch (error) {
+//     console.error("Error:", error);
+//   }
+// }
 
 
 
@@ -503,17 +501,19 @@ async function initializePhonespecTable(device) {
 
 
 
-app.get("/new", async (req, res) => {
-  const searchTerm = 'apple iphone 14'; // Replace with the desired term
-try {
-  // const { productId } = req.params; // Extract the productId from the request parameters.
-  //     console.log(productId)
-  const device = await gsmarena.catalog.getDevice('apple_iphone_13_pro_max-11089');
-  console.log(device);
-} catch (error) {
-  console.error('Error:', error);
-}
-});
+
+
+// app.get("/new", async (req, res) => {
+//   const searchTerm = 'apple iphone 14'; // Replace with the desired term
+// try {
+//   // const { productId } = req.params; // Extract the productId from the request parameters.
+//   //     console.log(productId)
+//   const device = await gsmarena.catalog.getDevice('apple_iphone_13_pro_max-11089');
+//   console.log(device);
+// } catch (error) {
+//   console.error('Error:', error);
+// }
+// });
 
 
 
