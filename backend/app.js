@@ -7,18 +7,18 @@ const cors = require("cors");
 const cloudinary = require("cloudinary").v2;
 const gsmarena = require('gsmarena-api')
 
-const apple = require('../localData/apple.json');
-const samsung = require('../localData/samsung.json');
-const xiomi = require('../localData/xiomi.json')
-const oneplus = require('../localData/oneplus.json')
-const google = require('../localData/google.json')
-const motorola = require('../localData/motorola.json')
-const phonespecData = require('../localData/phonespec.json')
+// const apple = require('../localData/apple.json');
+// const samsung = require('../localData/samsung.json');
+// const xiomi = require('../localData/xiomi.json')
+// const oneplus = require('../localData/oneplus.json')
+// const google = require('../localData/google.json')
+// const motorola = require('../localData/motorola.json')
+// const phonespecData = require('../localData/phonespec.json')
 
 
 const { Database } = require("sqlite3").verbose();
 
-const phonespecJson = [phonespecData]
+// const phonespecJson = [phonespecData]
 
 
 // Configure Cloudinary with your credentials
