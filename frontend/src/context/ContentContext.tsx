@@ -22,7 +22,7 @@ const ContentProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(true);
   const backendPort = 3002;
-  const domainName = "offersplus.co.uk";
+  const domainName = "localhost";
 
 
   const fetchData = async () => {

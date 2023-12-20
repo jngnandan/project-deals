@@ -29,8 +29,8 @@ const initializeDBAndServer = async () => {
 
     // Your other initialization code here...
 
-    const DOMAIN = 'offersplus.co.uk'; // Replace
-    const HOST = 'localhost'; // Replace with your desired host
+    const DOMAIN = 'localhost'; // Replace
+    const HOST = '0.0.0.0'; // Replace with your desired host
     const PORT = process.env.PORT || 3002;
 
     const httpsOptions = {
@@ -43,8 +43,8 @@ const initializeDBAndServer = async () => {
     // Serve static files from the 'public' directory
     app.use(express.static(path.join(__dirname, 'public')));
 
-    server.listen(PORT, HOST, () => {
-      console.log(`Server Running at https://${DOMAIN}:${PORT}/`);
+    server.listen(PORT, () => {
+      console.log(`Server Running at https://localhost:${PORT}/`);
     });
 
   } catch (error) {
