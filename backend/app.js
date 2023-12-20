@@ -1,17 +1,13 @@
-// import gsmarena from 'gsmarena-api';
 const express = require("express");
 const path = require("path");
 const { open } = require("sqlite");
 const sqlite3 = require("sqlite3");
 const cors = require("cors");
 const cloudinary = require("cloudinary").v2;
-const gsmarena = require('gsmarena-api')
-
-
+const gsmarena = require('gsmarena-api');
 const { Database } = require("sqlite3").verbose();
-
-// const phonespecJson = [phonespecData]
-
+const https = require('https');
+const fs = require('fs');
 
 // Configure Cloudinary with your credentials
 cloudinary.config({
@@ -31,38 +27,25 @@ const initializeDBAndServer = async () => {
       driver: sqlite3.Database,
     });
 
-    // Create a table and add data when the server starts
-    // await createTableAndAddData(apple);
+    // Your other initialization code here...
 
-    // Create table for Samsung
-    // await createTableAndAddDataForSamsung(samsung)
-
-    // Create table for Xiomi
-    // await createTableAndAddDataForXiomi(xiomi)
-
-        // Create table for Oneplus
-    // createTableAndAddDataForOneplus(oneplus)
-      
-    // Create table for Google
-    // createTableAndAddDataForGoogle(google)
-
-        // Create table for Motorola
-    // createTableAndAddDataForMotorola(motorola)
-
-    // Update table for with new column
-    // updateColumn(xiomi)
-
-    //Phonespec
-    // createTableAndAddDataForPhonespec(phonespecJson)
     const DOMAIN = process.env.DOMAIN || 'offersplus.co.uk';
     const PORT = process.env.PORT || 3002;
-    
-    app.listen(PORT, () => {
-      console.log(`Server Running at http://${DOMAIN}:${PORT}/`);
+
+const httpsOptions = {
+  key: fs.readFileSync(path.join(__dirname, 'ssl/private.key')),
+  cert: fs.readFileSync(path.join(__dirname, 'ssl/certificate.crt')),
+};
+
+
+    const server = https.createServer(httpsOptions, app);
+
+    server.listen(PORT, () => {
+      console.log(`Server Running at https://${DOMAIN}:${PORT}/`);
     });
 
-  } catch (e) {
-    console.log(`DB Error: ${e.message}`);
+  } catch (error) {
+    console.error("Error:", error);
     process.exit(1);
   }
 };
@@ -70,6 +53,8 @@ const initializeDBAndServer = async () => {
 initializeDBAndServer();
 
 app.use(cors());
+
+// Define your routes and other middleware here...
 
 
 // ... Previous code ...
@@ -385,7 +370,7 @@ app.get("/motorola", async (req, res) => {
 
 
 // app.listen(3002, () => {
-//   console.log("Server Running at http://localhost:3002/");
+//   console.log("Server Running at https://localhost:3002/");
 // });
 
 
