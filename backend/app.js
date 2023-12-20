@@ -6,7 +6,7 @@ const cors = require("cors");
 const cloudinary = require("cloudinary").v2;
 const gsmarena = require('gsmarena-api');
 const { Database } = require("sqlite3").verbose();
-const https = require('https');
+const http = require('http');
 const fs = require('fs');
 
 // Configure Cloudinary with your credentials
@@ -38,13 +38,15 @@ const initializeDBAndServer = async () => {
       cert: fs.readFileSync(path.join(__dirname, 'ssl/certificate.crt')),
     };
 
-    const server = https.createServer(httpsOptions, app);
+    // const server = https.createServer(httpsOptions, app);
+    const server = http.createServer(app);
 
+    
     // Serve static files from the 'public' directory
     app.use(express.static(path.join(__dirname, 'public')));
 
     server.listen(PORT, () => {
-      console.log(`Server Running at https://localhost:${PORT}/`);
+      console.log(`Server Running at http://localhost:${PORT}/`);
     });
 
   } catch (error) {
