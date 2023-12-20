@@ -5,6 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "serverstatic": "echo 'Your serverstatic command here'",
+    "golive": "echo 'Your deploy command here'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

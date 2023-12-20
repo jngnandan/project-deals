@@ -29,18 +29,21 @@ const initializeDBAndServer = async () => {
 
     // Your other initialization code here...
 
-    const DOMAIN = process.env.DOMAIN || 'offersplus.co.uk';
+    const DOMAIN = 'offersplus.co.uk'; // Replace
+    const HOST = 'localhost'; // Replace with your desired host
     const PORT = process.env.PORT || 3002;
 
-const httpsOptions = {
-  key: fs.readFileSync(path.join(__dirname, 'ssl/private.key')),
-  cert: fs.readFileSync(path.join(__dirname, 'ssl/certificate.crt')),
-};
-
+    const httpsOptions = {
+      key: fs.readFileSync(path.join(__dirname, 'ssl/private.key')),
+      cert: fs.readFileSync(path.join(__dirname, 'ssl/certificate.crt')),
+    };
 
     const server = https.createServer(httpsOptions, app);
 
-    server.listen(PORT, () => {
+    // Serve static files from the 'public' directory
+    app.use(express.static(path.join(__dirname, 'public')));
+
+    server.listen(PORT, HOST, () => {
       console.log(`Server Running at https://${DOMAIN}:${PORT}/`);
     });
 
@@ -53,6 +56,9 @@ const httpsOptions = {
 initializeDBAndServer();
 
 app.use(cors());
+
+// Define your routes and other middleware here...
+
 
 // Define your routes and other middleware here...
 
