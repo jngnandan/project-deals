@@ -22,11 +22,12 @@ const ContentProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(true);
   const backendPort = 3002;
+  const domainName = "offersplus.co.uk";
 
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:${backendPort}/`);
+      const response = await fetch(`http://${domainName}:${backendPort}/`);
       if (!response.ok) {
         throw new Error('Failed to fetch data');
       }
@@ -42,7 +43,7 @@ const ContentProvider = ({ children }) => {
     try {
       setLoading(true);
       console.log('Fetching data for:', brand);
-      const response = await fetch(`http://localhost:${backendPort}/mobiles/${brand}`);
+      const response = await fetch(`http://${domainName}:${backendPort}/mobiles/${brand}`);
       if (!response.ok) {
         throw new Error('Failed to fetch data');
       }
@@ -61,8 +62,8 @@ const ContentProvider = ({ children }) => {
 
   const fetchAppleData = async () => {
     try {
-          setLoading(true);
-      const response = await fetch(`http://localhost:${backendPort}/mobiles/apple`);
+      setLoading(true);
+      const response = await fetch(`http://${domainName}:${backendPort}/mobiles/apple`);
       if (!response.ok) {
         throw new Error('Failed to fetch data');
       }
@@ -79,11 +80,10 @@ const ContentProvider = ({ children }) => {
 
   const fetchSamsungData = async () => {
     try {
-          setLoading(true);
-      const response = await fetch(`http://localhost:${backendPort}/mobiles/samsung`);
+      setLoading(true);
+      const response = await fetch(`http://${domainName}:${backendPort}/mobiles/samsung`);
       if (!response.ok) {
         throw new Error('Failed to fetch data');
-        
       }
       const newdata = await response.json();
       setSamsungData(newdata);
@@ -98,7 +98,7 @@ const ContentProvider = ({ children }) => {
   const fetchXiaomiData = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:${backendPort}/mobiles/xiaomi`);
+      const response = await fetch(`http://${domainName}:${backendPort}/mobiles/xiaomi`);
       if (!response.ok) {
         throw new Error('Failed to fetch data');
       }
@@ -113,24 +113,16 @@ const ContentProvider = ({ children }) => {
       // For example, setXiaomiDataError(true);
     }
   };
-  
-   
-  
 
   const fetchOneplusData = async () => {
     try {
-          // setLoading(true);
-      const response = await fetch(`http://localhost:${backendPort}/mobiles/oneplus`);
+      const response = await fetch(`http://${domainName}:${backendPort}/mobiles/oneplus`);
       if (!response.ok) {
         throw new Error('Failed to fetch data');
-        
       }
       const OneplusData = await response.json();
       setOneplusData(OneplusData);
-      // setDataFromBackend(data);
       setLoading(false);
-      // setFilteredData(data)
-      // console.log(xiomiData)
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -138,18 +130,13 @@ const ContentProvider = ({ children }) => {
 
   const fetchMotorolaData = async () => {
     try {
-          // setLoading(true);
-      const response = await fetch(`http://localhost:${backendPort}/mobiles/motorola`);
+      const response = await fetch(`http://${domainName}:${backendPort}/mobiles/motorola`);
       if (!response.ok) {
         throw new Error('Failed to fetch data');
-        
       }
       const motorolaDevices = await response.json();
       setMotorolaData(motorolaDevices);
-      // setDataFromBackend(data);
       setLoading(false);
-      // setFilteredData(data)
-      // console.log(xiomiData)
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -157,37 +144,19 @@ const ContentProvider = ({ children }) => {
 
   const fetchGoogleData = async () => {
     try {
-          // setLoading(true);
-      const response = await fetch(`http://localhost:${backendPort}/mobiles/google`);
+      const response = await fetch(`http://${domainName}:${backendPort}/mobiles/google`);
       if (!response.ok) {
         throw new Error('Failed to fetch data');
-        
       }
       const gooleDevices = await response.json();
       setGoogleData(gooleDevices);
-      // setDataFromBackend(data);
       setLoading(false);
-      // setFilteredData(data)
-      // console.log('Google Devices', gooleDevices)
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
 
-  // console.log(appleData)
-
-
-  // useEffect(() => {
-  //   // Fetch data only if dataFromBackend is empty
-  //   if (appleData.length === 0) {
-  //     fetchAppleData();
-  //   }
-  // }, [appleData]);
-
-
-
   useEffect(() => {
-    // Fetch data only if dataFromBackend is empty
     if (dataFromBackend.length === 0) {
       fetchData();
     }
@@ -199,7 +168,7 @@ const ContentProvider = ({ children }) => {
     <ContentContext.Provider value={{ products, setProducts, compareProducts, setCompareProducts, dataFromBackend, setDataFromBackend, appleData, samsungData, fetchSamsungData, xiaomiData, fetchXiaomiData, oneplusData, fetchOneplusData, fetchGoogleData, googleData, fetchMotorolaData, motorolaData, loading, setLoading, fetchAppleData, checkboxData, setCheckboxData, mobilesData, fetchMobilesData }}>
       {children}
     </ContentContext.Provider>
-    );
+  );
 };
 
 export { ContentContext, ContentProvider };

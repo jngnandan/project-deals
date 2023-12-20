@@ -54,11 +54,12 @@ const initializeDBAndServer = async () => {
 
     //Phonespec
     // createTableAndAddDataForPhonespec(phonespecJson)
-const PORT = process.env.PORT || 3002;
-
-app.listen(PORT, () => {
-  console.log(`Server Running at http://localhost:${PORT}/`);
-});
+    const DOMAIN = process.env.DOMAIN || 'offersplus.co.uk';
+    const PORT = process.env.PORT || 3002;
+    
+    app.listen(PORT, () => {
+      console.log(`Server Running at http://${DOMAIN}:${PORT}/`);
+    });
 
   } catch (e) {
     console.log(`DB Error: ${e.message}`);
