@@ -1,26 +1,30 @@
 
 import React, { useContext } from 'react';
 import { Text, Paper, Box, Container, Grid, SimpleGrid, rem, NavLink, Badge, Flex, Button, Anchor, Chip } from '@mantine/core';
-import { LoremIpsum } from 'lorem-ipsum';
+import { loremIpsum } from 'lorem-ipsum';
 import { Link } from 'react-router-dom';
-import { ContentContext, ContentProvider } from '../../context/ContentContext.tsx';
-import ProductCard from '../Home/ProductCard/ProductCard.tsx';
-import FooterLinks from '../Footer/FooterLinks.tsx';
+import { ContentContext, ContentProvider } from '../../../context/ContentContext.tsx';
+import ProductCard from '../../Home/ProductCard/ProductCard.tsx';
+import FooterLinks from '../../Footer/FooterLinks.tsx';
 
-const lorem = new LoremIpsum();
+import { PageHeader } from '../../Components/PageHeader.tsx';
+
 
 export default function Deals() {
     const {dataFromBackend, products} = useContext(ContentContext)
 
     const selectedRange = dataFromBackend.slice(8, 15 + 1);
 
+     // Generate Lorem Ipsum text
+  const loremText = loremIpsum({
+    count: 4,                      // Number of paragraphs to generate
+    units: 'sentences',           // Generating paragraphs of text
+    // format: 'html'                 // HTML format (you can use 'plain' for plain text)
+  });
+
     return (
         <div>
-            <div className="bg-blue-500 p-4 py-6 px-6">
-                <h1 className='text-3xl text-white font-semibold'>Deals</h1>
-
-                <p className='my-5 text-white'>{lorem.generateSentences(5)}</p>
-            </div>
+            <PageHeader title="Deals" description={loremText} page="Deals" />
 
         {/* Product Cards */}
        <Paper withBorder shadow="xs" px="xl" py='md' m='md' mt='xl'>

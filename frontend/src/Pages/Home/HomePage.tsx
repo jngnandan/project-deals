@@ -52,7 +52,6 @@ function HomePage() {
 
   const newRange = dataFromBackend.slice(16, 23 + 1);
 
-
   // console.log('cool',dataFromBackend)
 
   const SECONDARY_COL_HEIGHT = `calc(${400} / 2 - var(--mantine-spacing-md) / 2)`;
