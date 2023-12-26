@@ -28,16 +28,16 @@ const icons = [
 ];
 
 const categories = [
-  { label: 'Deals', icon: <FaMoneyBill size={28} /> },
-  { label: 'News', icon: <FaNewspaper size={28} /> },
-  { label: 'Mobiles', icon: <FaMobile size={28} /> },
-  { label: 'Tablets', icon: <FaTablet size={28} /> },
-  { label: 'Laptops', icon: <FaLaptop size={28} /> },
-  { label: 'TVs', icon: <FaTv size={28} /> },
-  { label: 'Cameras', icon: <FaCamera size={28} /> },
-  { label: 'ACs', icon: <FaSnowflake size={28} /> },
-  { label: 'Fridge', icon: <FaSnowflake size={28} /> },
-  { label: 'Earphones', icon: <FaHeadphones size={28} /> },
+  { label: 'Deals', icon: <FaMoneyBill size={28} />, link: '/deals' },
+  { label: 'News', icon: <FaNewspaper size={28} />, link: '/news' },
+  { label: 'Mobiles', icon: <FaMobile size={28} />, link: '/mobiles' },
+  { label: 'Tablets', icon: <FaTablet size={28} />, link: '/tablets' },
+  { label: 'Laptops', icon: <FaLaptop size={28} />, link: '/laptops' },
+  { label: 'TVs', icon: <FaTv size={28} />, link: '/tvs' },
+  { label: 'Cameras', icon: <FaCamera size={28} />, link: '/cameras' },
+  { label: 'ACs', icon: <FaSnowflake size={28} />, link: '/acs' },
+  { label: 'Fridge', icon: <FaSnowflake size={28} />, link: '/fridge' },
+  { label: 'Earphones', icon: <FaHeadphones size={28} />, link: '/earphones' },
 ];
 
 
@@ -74,6 +74,7 @@ function HomePage() {
   <div className="border p-4 ">
     <div className="grid grid-cols-5  md:grid-cols-10">
       {categories.map((category, index) => (
+        <Link to={category.link}>
         <div
           className="text-center"
           key={index}
@@ -83,6 +84,7 @@ function HomePage() {
           </Button>
           <p className="mt-2 text-sm">{category.label}</p>
         </div>
+        </Link>
       ))}
     </div>
   </div>
@@ -208,7 +210,6 @@ function HomePage() {
         
        <div className='grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2  mb-6'>
                 {(newRange).map((product, index) => {
-                  
                   return (
                   <div
                     key={index}>
@@ -217,7 +218,8 @@ function HomePage() {
                     </Paper>
                   </div>
                 )})}
-              </div>
+        </div>
+
        </Paper>
 
  
