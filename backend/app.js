@@ -45,9 +45,11 @@ const initializeDBAndServer = async () => {
     // Serve static files from the 'public' directory
     app.use(express.static(path.join(__dirname, 'public')));
 
-    server.listen(PORT, () => {
-      console.log(`Server Running at http://localhost:${PORT}/`);
+    server.listen(PORT, '0.0.0.0', () => {
+      console.log(`Server Running in Docker at http://localhost:${PORT}/`);
     });
+    
+    
 
   } catch (error) {
     console.error("Error:", error);
